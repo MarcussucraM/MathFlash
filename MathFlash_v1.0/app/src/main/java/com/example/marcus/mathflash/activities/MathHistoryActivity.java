@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+//Purpose of this activity is to show the user history from past results playing this app.
 public class MathHistoryActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +23,7 @@ public class MathHistoryActivity extends AppCompatActivity {
     }
 
 
+    //Load data from text file, append it to layout - which is a TextView
     public void onStart(){
         super.onStart();
 

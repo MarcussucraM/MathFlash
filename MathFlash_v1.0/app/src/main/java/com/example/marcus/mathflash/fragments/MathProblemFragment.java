@@ -23,10 +23,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link com.example.marcus.mathflash.fragments.MathProblemFragment.OnGameEndedListener} interface
- * to handle interaction events.
+ * MathProblemFragment is where all the fun happens
+ * It creates set of problems to complete in a predefined timelimit
+ * As the problems are completed a data object is filled out that
+ * contains number of problems, number completed, number correct, and number incorrect
+ * This object's state is saved at the end of the session to be
+ * loaded in history later to see how you did.
+ *
  */
 
 
@@ -62,6 +65,7 @@ public class MathProblemFragment extends Fragment implements View.OnClickListene
     String flashCardType;
 
     //A boolean stating whether finished or not - because there are two ways to end the fragment
+    //On time ended and when the user runs out of problems.
     boolean finished = false;
 
     public MathProblemFragment() {
@@ -88,6 +92,7 @@ public class MathProblemFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
+    //Get handles on all of our view objects here and set up the onClick listener
     public void onViewCreated(View view, Bundle state){
         super.onViewCreated(view, state);
         editText_userAnswer = (EditText)view.findViewById(R.id.problem_answer);
@@ -100,9 +105,11 @@ public class MathProblemFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
+    //Create a new user object on start
+    //Fill its state with saved values if necessary
+    //Also restore the timeField with current time.
     public void onActivityCreated(Bundle state){
         super.onActivityCreated(state);
-        //create the user object here - set its values if necessary
         user = new MathFlashUser();
 
         if(state != null){
@@ -143,6 +150,12 @@ public class MathProblemFragment extends Fragment implements View.OnClickListene
         }.start();
     }
 
+    //Here we must save how much time is left
+    //what problem we are currently on
+    //how many problems the user has got correct/incorrect
+    //and if we're finished or not, incase the user
+    //decides to flip the screen after we run out of
+    //problems and time is still ticking.
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putLong(ARG_TIME_LEFT, timeLeft);
@@ -160,6 +173,7 @@ public class MathProblemFragment extends Fragment implements View.OnClickListene
 
 
     //Set Parameters for this fragment to work.
+    //Create the math problems here
     public void setUpFragment(int low, int high, int time, String type){
         flashCardType = type;
         mathProblems = MathResources.createProblems(low, high, type);

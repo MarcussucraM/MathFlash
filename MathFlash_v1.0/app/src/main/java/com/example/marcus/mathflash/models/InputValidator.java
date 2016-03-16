@@ -6,6 +6,11 @@ package com.example.marcus.mathflash.models;
  * various Views
  */
 public class InputValidator {
+
+    //In the MathSelectionActivity after a selection has been made
+    //A settings dialog comes up and asks the user for a low number
+    //high number and time per problem
+    //this method checks to make sure those values are ok before moving on.
     public static boolean isDialogInputOk(String low, String high, String time){
         //we can't have any that are empty
         if(low.equals("") || high.equals("") || time.equals("")) return false;
@@ -30,7 +35,8 @@ public class InputValidator {
         return true;
     }
 
-    //Makes sure the user didn't input something retarded
+    //Makes sure when inputting an answer to a math problem
+    //it is an actual number not an empty string or invalid number.
     public static boolean isMathProblemInputOk(String answer){
         if(answer.equals("")) return false;
         try{

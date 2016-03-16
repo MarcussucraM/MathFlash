@@ -11,9 +11,17 @@ import com.example.marcus.mathflash.fragments.MathProblemFragment;
 import com.example.marcus.mathflash.fragments.MathResultsFragment;
 import com.example.marcus.mathflash.models.MathFlashUser;
 
+//Purpose of this Activity is to display the actual game.
+//All of the logic is in MathProblemFragment
 public class MathProblemActivity extends AppCompatActivity implements MathProblemFragment.OnGameEndedListener, MathResultsFragment.OnResultsFragmentInteractionListener{
 
     @Override
+    //This Activity starts after a selection has been made
+    //The intent that started it has a bundle with
+    //lowest value the problems could have (ex: 1)
+    //highest value the problems could have (ex: 10)
+    //The time per problem (1 - 10 seconds)
+    //The mode of play(addition problems, subtraction problems or randomized problems)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_problem);
@@ -31,21 +39,18 @@ public class MathProblemActivity extends AppCompatActivity implements MathProble
     }
 
     @Override
+    //When time runs out or there are no more problems this callback method is run
+    //MathFlashUser is an object containing data collected while the user played the game.
+    //This object is passed to a dialog fragment which shows the results of that data collected.
     public void onGameEnded(MathFlashUser user) {
-        //get all of the results - the toast is kind of useless soon
-        /*String results = "";
-        results += "Date Created: " + user.getDateCreated().toString() + "\n";
-        results += "Mode: " + user.getModePlayed() + "\n";
-        results += "Number Correct: " + user.getNumCorrect() + "\n";
-        results += "Number Incorrect: " + user.getNumIncorrect() + "\n";
-        Toast.makeText(this, results, Toast.LENGTH_SHORT).show();*/
-
         //switch to results page!!
         MathResultsFragment resultsFragment = MathResultsFragment.newInstance(user);
         resultsFragment.show(getSupportFragmentManager(), "resultsDialog");
     }
 
     @Override
+    //When done with the dialog this is called
+    //Switches back to the main page.
     public void onResultsFragmentInteraction() {
         //switch back to selection page!!
         Intent intent = new Intent(this, MathSelectionActivity.class);

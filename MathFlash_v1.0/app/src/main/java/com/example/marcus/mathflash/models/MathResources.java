@@ -31,11 +31,17 @@ public class MathResources {
         return additionProblems;
     }
 
+    //Creates a number of subtraction problems with low and high end
+    //We can't have negative numbers because my brother hasn't learned those yet
+    //So we have to make sure that for each high value we can only subtract up to
+    //that high value not any higher.
+    //so 5-5 can be created but not 5-6
     public static ArrayList<String> createSubtractionProblems(int low, int high){
         ArrayList<String> subtractionProblems = new ArrayList<String>();
 
         for(int i = high; i >= low; i--){
             int number1 = i;
+            //make sure number2 can only go up to number1
             for(int j = low; j <= number1; j++){
                 int number2 = j;
                 String problem = number1 + " - " + number2;
@@ -45,6 +51,11 @@ public class MathResources {
         return subtractionProblems;
     }
 
+    //Creates a number of wild problems(addition and subtraction mixed up)
+    //We evenly distribute add and sub problems (even = add) (odd = sub)
+    //and also make sure that when subtracting, the number2 value cant be higher than
+    //the number1 value (ex: number1 - number2)
+    //after we generate the list we shuffle up the problems.
     public static ArrayList<String> createWildProblems(int low, int high, int amount){
         ArrayList<String> wildProblems = new ArrayList<String>();
         String operator = "";
@@ -71,6 +82,7 @@ public class MathResources {
         return wildProblems;
     }
 
+    //A factory method that creates a different set of problems based on type
     public static ArrayList<String> createProblems(int low, int high, String type){
         if(type.equals("Addition")){
             return createAdditionProblems(low, high);

@@ -18,6 +18,13 @@ import java.util.ArrayList;
 
 /**
  * Created by MARCUS on 3/14/2016.
+ * Takes in the context of the program - so we can use file
+ * methods. Has just two methods load and save data
+ * this either loads the data from previous results and displays them
+ * in MathHistoryActivity
+ *
+ * Or saves the data after the end of a game session to
+ * be loaded later.
  */
 public class MathFlashFileHelper {
     //The context of our application - used to retrieve files
