@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MathFlash</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="selection_hint">Choose One To Start</string>
+    <string name="problem_answer_hint">Answer</string>
+    <string name="button_send_answer">SEND</string>
+    <string name="dialog_settings_title">Settings</string>
+    <string name="dialog_results_title">Results</string>
+    <string name="dialog_lowValue">Lowest Number Possible</string>
+    <string name="dialog_highValue">Highest Number Possible</string>
+    <string name="dialog_timeValue">Time Per Problem</string>
+    <string name="example_time_text">Time Left: 100</string>
+    <string name="example_problem_text">10 + 5</string>
+</resources>
